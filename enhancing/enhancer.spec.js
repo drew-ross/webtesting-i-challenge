@@ -1,2 +1,17 @@
 const enhancer = require('./enhancer.js');
-// test away!
+
+describe('success', () => {
+
+});
+
+describe('fail', () => {
+
+});
+
+describe('repair', () => {
+
+});
+
+describe('get', () => {
+
+});
