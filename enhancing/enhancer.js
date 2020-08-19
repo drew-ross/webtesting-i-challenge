@@ -6,7 +6,15 @@ module.exports = {
 };
 
 function success(item) {
-  return { ...item };
+  const max = 20;
+  if (item.enhancement < max) {
+    return {
+      ...item,
+      enhancement: item.enhancement + 1
+    };
+  } else {
+    return item;
+  }
 }
 
 function fail(item) {
