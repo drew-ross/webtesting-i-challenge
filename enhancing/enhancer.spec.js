@@ -18,9 +18,6 @@ describe('success', () => {
       enhancement: 20
     };
 
-    expect(itemA.enhancement).toBe(5);
-    expect(itemB.enhancement).toBe(20);
-
     const enhancedA = success(itemA);
     const enhancedB = success(itemB);
 
@@ -44,11 +41,6 @@ describe('fail', () => {
       enhancement: 14
     };
 
-    expect(itemA.durability).toBe(50);
-    expect(itemA.enhancement).toBe(5);
-    expect(itemB.durability).toBe(88);
-    expect(itemB.enhancement).toBe(14);
-
     const failedItemA = fail(itemA);
     const failedItemB = fail(itemB);
 
@@ -69,11 +61,6 @@ describe('fail', () => {
       durability: 88,
       enhancement: 16
     };
-
-    expect(itemA.durability).toBe(50);
-    expect(itemA.enhancement).toBe(15);
-    expect(itemB.durability).toBe(88);
-    expect(itemB.enhancement).toBe(16);
 
     const failedItemA = fail(itemA);
     const failedItemB = fail(itemB);
@@ -96,11 +83,6 @@ describe('fail', () => {
       enhancement: 19
     };
 
-    expect(itemA.durability).toBe(50);
-    expect(itemA.enhancement).toBe(17);
-    expect(itemB.durability).toBe(88);
-    expect(itemB.enhancement).toBe(19);
-
     const failedItemA = fail(itemA);
     const failedItemB = fail(itemB);
 
@@ -116,9 +98,6 @@ describe('fail', () => {
       durability: 2,
       enhancement: 3
     };
-
-    expect(itemA.durability).toBe(2);
-    expect(itemA.enhancement).toBe(3);
 
     const failedItemA = fail(itemA);
 
@@ -151,5 +130,33 @@ describe('repair', () => {
 });
 
 describe('get', () => {
+  it('returns an item with the enhancement level prefixed to the item name', () => {
+    const itemA = {
+      name: 'Item A',
+      durability: 66,
+      enhancement: 17
+    };
+    const itemB = {
+      name: 'Item B',
+      durability: 17,
+      enhancement: 5
+    };
 
+    const prefixedA = get(itemA);
+    const prefixedB = get(itemB);
+
+    expect(prefixedA.name).toBe('[+17] Item A');
+    expect(prefixedB.name).toBe('[+5] Item B');
+  });
+  it('returns an item with no change to the name if enhancement is 0', () => {
+    const itemA = {
+      name: 'Item A',
+      durability: 66,
+      enhancement: 0
+    };
+
+    const prefixedA = get(itemA);
+
+    expect(prefixedA.name).toBe('Item A');
+  });
 });
