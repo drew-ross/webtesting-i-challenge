@@ -98,11 +98,19 @@ describe('fail', () => {
       durability: 2,
       enhancement: 3
     };
+    const itemB = {
+      name: 'Item B',
+      durability: 9,
+      enhancement: 16
+    };
 
     const failedItemA = fail(itemA);
+    const failedItemB = fail(itemB);
 
     expect(failedItemA.durability).toBe(2);
     expect(failedItemA.enhancement).toBe(3);
+    expect(failedItemB.durability).toBe(9);
+    expect(failedItemB.enhancement).toBe(16);
   });
 });
 
