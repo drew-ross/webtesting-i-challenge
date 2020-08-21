@@ -18,16 +18,14 @@ function success(item) {
 }
 
 function fail(item) {
-  if (item.durability < 5) {
-    return item;
-  } else if (item.durability < 10 && item.enhancement >= 15 && item.enhancement <= 16) {
+  if ((item.durability < 5) || (item.durability < 10 && item.enhancement >= 15 && item.enhancement <= 16)) {
     return item;
   } else if (item.enhancement < 15) {
     return { ...item, durability: item.durability - 5 };
   } else if (item.enhancement <= 16) {
     return { ...item, durability: item.durability - 10 };
   } else {
-    return { ...item, enhancement: item.enhancement - 1 };
+    return { ...item, enhancement: --item.enhancement };
   }
 }
 
